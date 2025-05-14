@@ -2,8 +2,11 @@
 
 from flask import Flask,request,render_template
 import google.generativeai as genai
+import os
 
-genai.configure(api_key='AIzaSyCd9LAK-iXFltbEPHPyAwZN3JpCjzDISTc')
+gemini_api_key = os.getenv("gemini_api_key")
+
+genai.configure(api_key=gemini_api_key)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 app = Flask(__name__)
