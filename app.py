@@ -9,7 +9,7 @@ import datetime
 gemini_api_key = os.getenv("gemini_api_key")
 
 genai.configure(api_key=gemini_api_key)
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.0-flash")
 
 app = Flask(__name__)
 
@@ -69,6 +69,12 @@ def delete_log():
     c.close()
     conn.close()
     return(render_template("delete_log.html"))
+
+@app.route("/logout",methods=["GET","POST"])
+def logout():
+    global first_time
+    first_time = 1
+    return(render_template("index.html"))
 
 if __name__ == "__main__":
     app.run()
